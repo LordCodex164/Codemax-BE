@@ -1,0 +1,6 @@
+{
+	"watch": ["src", ".env"],
+	"ext": "js,ts",
+	"ignore": ["src/**/*.spec.ts", "src/base_data/freightos_port_pairs.json"],
+	"exec": "ts-node  --transpile-only ./src/app.ts"
+}
