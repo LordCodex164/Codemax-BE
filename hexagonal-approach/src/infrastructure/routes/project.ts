@@ -2,8 +2,9 @@ import { Router, Request, Response } from "express";
 import { ProjectController } from "../../api/controllers/project";
 import { CreateProject } from "../../application/usecases/project";
 import { ProjectModel } from "../db/models/project";
+import { IProjectRepository } from '../../domain/repositories/project';
 
-const projectUseCase = new CreateProject(ProjectModel as any)
+const projectUseCase = new CreateProject(ProjectModel as unknown as IProjectRepository);
 
 class ProjectRouter {
     private route: Router;
