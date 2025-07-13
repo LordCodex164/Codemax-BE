@@ -1,16 +1,17 @@
 import { Router, Request, Response } from "express";
-import { ProjectController } from "@/api/controllers/project";
-import { CreateProject } from "@/application/usecases/project";
+import { ProjectController } from "../../api/controllers/project";
+import { CreateProject } from "../../application/usecases/project";
+import { ProjectModel } from "../db/models/project";
 
-//const createProject = new CreateProject
+const projectUseCase = new CreateProject(ProjectModel as any)
 
 class ProjectRouter {
     private route: Router;
-    //private projectController: ProjectController;
+    projectController: ProjectController;
 
     constructor() {
         this.route = Router();
-        //this.projectController = new ProjectController(CreateProject)
+        this.projectController = new ProjectController(projectUseCase)
     }
 
     public async execute(app: Router) {
@@ -21,7 +22,9 @@ class ProjectRouter {
             res.status(200).json({msg: "hello"})
         })
 
-        this.route.post("/create-project", )
+        this.route.post("/create", (req: Request, res: Response) => {
+            this.projectController.createProject(req, res)
+        })
     }
 }
 

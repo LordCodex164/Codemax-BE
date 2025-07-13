@@ -10,6 +10,7 @@ export default (app: express.Application) => {
     app.use(cors())
     app.use(helmet())
     app.use(errors());
+    app.use(express.json())
 
     app.use("/api", routes)
 
@@ -46,5 +47,7 @@ export default (app: express.Application) => {
           },
         });
       });
+
+      return app
     
 }

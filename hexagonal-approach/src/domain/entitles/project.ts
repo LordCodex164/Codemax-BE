@@ -1,9 +1,7 @@
 export class Project {
     constructor(
-        public id?: string,
-        public name?: string,
-        public description?: string,
-        public createdAt?: Date,
-        public updatedAt?: Date
+        public job_number?: string,
+        public company_name?: string,
+        public service_type?: string
     ) {}
 }

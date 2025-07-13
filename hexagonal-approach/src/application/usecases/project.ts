@@ -1,22 +1,24 @@
 import { IProjectRepository } from "@domain/repositories/project"
-import { Project } from "@entities/project";
-import {request, Request, Response} from "express"
+import { Project } from "../../domain/entitles/project";
+import {Request} from "express"
 
 export class CreateProject {
     constructor(private ProjectRepository: IProjectRepository) {}
 
     async execute (req:Request) : Promise<Project>{
-        const {id, name, description} = req.body
+        const {job_number, company_name, service_type} = req.body
 
-        if(!name || description) {
+        if(!job_number || !company_name) {
             throw new Error("Please provide the fields")
         }
 
         const project = new Project(
-            id,
-            name,
-            description
+            job_number,
+            company_name,
+            service_type,
         )
+
+        console.log(1, project)
 
         const projectResponse = this.ProjectRepository.create(project)
 
